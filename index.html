@@ -24,9 +24,9 @@ if (typeof web3 !== 'undefined') {
   document.getElementById("test2").innerHTML = "IF";
   console.warn("Using web3 detected from external source like Metamask")
     // Use Mist/MetaMask's provider
-  window.web3 = new Web3(web3.currentProvider);
+  web3 = new Web3(web3.currentProvider);
   web3.eth.defaultAccount = web3.eth.accounts[0];
-  document.getElementById("test6").innerHTML = web3.eth.defaultAccount;
+  document.getElementById("test6").innerHTML = web3.eth.accounts[0];
   } else {
     document.getElementById("test3").innerHTML = "ELSE";
     console.warn("No web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
