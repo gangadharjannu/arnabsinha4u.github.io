@@ -26,7 +26,7 @@ if (typeof web3 !== 'undefined') {
   }
 
 web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-abi = JSON.parse("[
+abi = JSON.parse('[
 	{
 		"constant": true,
 		"inputs": [],
@@ -59,7 +59,7 @@ abi = JSON.parse("[
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-]");
+]');
 myContract = web3.eth.contract(abi);
 contractInstance = myContract.at('0x7c7b7508f56183b95ec10b0e4ce6e3c1b47d08bd');  
 
