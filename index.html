@@ -8,16 +8,25 @@
 <body class="container">
   <h1>Enter car number</h1>
   <p id="merk"></p>
+  <p id="test"></p>
   <input type="text" id="car" />
   <a href="#" onclick="detailsCar()" class="btn btn-primary">Get details</a>
 </body>
 <script>
+document.getElementById("test").innerHTML = "HELLO";
+
 if (typeof web3 !== 'undefined') {
   web3 = new Web3(web3.currentProvider);
 } else {
   // set the provider you want from Web3.providers
   web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.etherscan.io"));
 }
+var web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.etherscan.io"));
+var balanceWei = web3.eth.getBalance("0xd9843e02E2a600C8020Cb3C3d7F6243bCca7A341").toNumber();
+var balance = web3.fromWei(balanceWei, 'ether');  
+
+document.getElementById("test").innerHTML = balance;
+  
 function detailsCar() {
 var xmlhttp = new XMLHttpRequest();
 
