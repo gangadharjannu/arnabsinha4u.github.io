@@ -32,8 +32,8 @@ if (typeof web3 !== 'undefined') {
         console.log(CarTrustQuotient);
 
 function getCarDetails() {
-    carName = $("#car").val()
-    CarTrustQuotient.get_details_of_car(carName, function(error, result){
+    carLicensePlate = $("#car").val()
+    CarTrustQuotient.get_details_of_car(carLicensePlate, function(error, result){
             if(!error)
                 {
                     $("#generic_return").html(result[0]+' ('+result[1]+' years old)');
@@ -46,22 +46,25 @@ function getCarDetails() {
   
 function setCarDetails() {
 var xmlhttp = new XMLHttpRequest();
-carName = $("#car").val()  
-console.log(carName)
-xmlhttp.open("GET", "https://opendata.rdw.nl/resource/m9d7-ebf2.geojson?kenteken="+carName, true);
+carLicensePlate = $("#car").val()  
+console.log(carLicensePlate)
+xmlhttp.open("GET", "https://opendata.rdw.nl/resource/m9d7-ebf2.geojson?kenteken="+carLicensePlate, true);
 xmlhttp.send();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
         console.log(myObj)
-        document.getElementById("merk").innerHTML = myObj.features[0].properties.merk;
-        console.log("Car Make"+myObj.features[0].properties.merk)
-        console.log("Car Name"+myObj.features[0].properties.handelsbenaming)
-        console.log("Car Type"+myObj.features[0].properties.inrichting)
-        console.log("APK Validity"+myObj.features[0].properties.vervaldatum_apk)
-        console.log("Type of usage"+myObj.features[0].properties.voertuigsoort)
-        console.log("Car first colour"+myObj.features[0].properties.eerste_kleur)
-        console.log("Car Economy Label"+myObj.features[0].properties.zuinigheidslabel)
+        carMake = myObj.features[0].properties.merk
+        carName = myObj.features[0].properties.handelsbenaming
+        carType = myObj.features[0].properties.inrichting
+        carApkDate = myObj.features[0].properties.vervaldatum_apk
+        carUsageType = myObj.features[0].properties.voertuigsoort
+        carFirstColour = myObj.features[0].properties.eerste_kleur
+        carEconomyLabel = myObj.features[0].properties.zuinigheidslabel
+          CarTrustQuotient.new_car(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel, function (err, res) {
+            if (err) { alert(err) }
+                alert(res);
+            });
     }
 };
   
