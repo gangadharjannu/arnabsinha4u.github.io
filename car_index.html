@@ -47,7 +47,6 @@ function getCarDetails() {
 function setCarDetails() {
 var xmlhttp = new XMLHttpRequest();
 carLicensePlate = $("#car").val()  
-console.log(carLicensePlate)
 xmlhttp.open("GET", "https://opendata.rdw.nl/resource/m9d7-ebf2.geojson?kenteken="+carLicensePlate, true);
 xmlhttp.send();
 xmlhttp.onreadystatechange = function() {
@@ -61,6 +60,7 @@ xmlhttp.onreadystatechange = function() {
         carUsageType = myObj.features[0].properties.voertuigsoort
         carFirstColour = myObj.features[0].properties.eerste_kleur
         carEconomyLabel = myObj.features[0].properties.zuinigheidslabel
+        console.log(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel)
           CarTrustQuotient.new_car(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel, function (err, res) {
             if (err) { alert(err) }
                 alert(res);
