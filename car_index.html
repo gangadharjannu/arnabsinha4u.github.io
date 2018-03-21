@@ -31,7 +31,7 @@ if (typeof web3 !== 'undefined') {
         console.log("Connection section")
         console.log(CarTrustQuotient);
 
-carName = $("#car").val()
+var carName = $("#car").val()
 
 function getCarDetails() {
     CarTrustQuotient.get_details_of_car(carName, function(error, result){
