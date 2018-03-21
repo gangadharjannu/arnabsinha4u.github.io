@@ -31,9 +31,8 @@ if (typeof web3 !== 'undefined') {
         console.log("Connection section")
         console.log(CarTrustQuotient);
 
-var carName = $("#car").val()
-
 function getCarDetails() {
+    carName = $("#car").val()
     CarTrustQuotient.get_details_of_car(carName, function(error, result){
             if(!error)
                 {
@@ -47,6 +46,7 @@ function getCarDetails() {
   
 function setCarDetails() {
 var xmlhttp = new XMLHttpRequest();
+carName = $("#car").val()  
 console.log(carName)
 xmlhttp.open("GET", "https://opendata.rdw.nl/resource/m9d7-ebf2.geojson?kenteken="+carName, true);
 xmlhttp.send();
