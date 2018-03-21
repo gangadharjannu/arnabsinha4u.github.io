@@ -18,23 +18,18 @@
   <a href="#" onclick="detailsCar()" class="btn btn-primary">Get details</a>
 </body>
 <script>
-document.getElementById("test1").innerHTML = "HELLO";
 
 if (typeof web3 !== 'undefined') {
-  document.getElementById("test2").innerHTML = "IF";
   console.warn("Using web3 detected from external source like Metamask")
     // Use Mist/MetaMask's provider
   web3 = new Web3(web3.currentProvider);
   web3.eth.defaultAccount = web3.eth.accounts[0];
-  document.getElementById("test6").innerHTML = web3.eth.accounts[0];
   } else {
-    document.getElementById("test3").innerHTML = "ELSE";
     console.warn("No web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
   }
-
-document.getElementById("test4").innerHTML = "BEFORELOCAL";
+  
 web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 abi = JSON.parse();
 myContract = web3.eth.contract(abi);
@@ -42,7 +37,6 @@ contractInstance = myContract.at('0x7c7b7508f56183b95ec10b0e4ce6e3c1b47d08bd');
 
 function detailsCar() {
 var xmlhttp = new XMLHttpRequest();
-document.getElementById("test5").innerHTML = "FUNC";
 carName = $("#car").val()
 xmlhttp.open("GET", "https://opendata.rdw.nl/resource/m9d7-ebf2.geojson?kenteken="+carName, true);
 xmlhttp.send();
@@ -51,6 +45,7 @@ xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
         document.getElementById("merk").innerHTML = myObj.features[0].properties.merk;
+        console.log(myObj.features[0].properties.merk)
     }
 };
   
