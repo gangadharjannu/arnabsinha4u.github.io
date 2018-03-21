@@ -28,16 +28,6 @@ if (typeof web3 !== 'undefined') {
         var CarTrustQuotient = CarTrustQuotientContract.at('0x4ae542b22132a1e91d181765159d7b4c906bf85d');
         console.log("Connection section")
         console.log(CarTrustQuotient);
-
-        CarTrustQuotient.get_details_of_car($("#car").val(), function(error, result){
-            if(!error)
-                {
-                    $("#generic_return").html(result[0]+' ('+result[1]+' years old)');
-                    console.log(result);
-                }
-            else
-                console.error(error);
-        });
   
 function detailsCar() {
 var xmlhttp = new XMLHttpRequest();
@@ -59,6 +49,16 @@ xmlhttp.onreadystatechange = function() {
         console.log("Car Economy Label"+myObj.features[0].properties.zuinigheidslabel)
     }
 };
+
+  CarTrustQuotient.get_details_of_car($("#car").val(), function(error, result){
+            if(!error)
+                {
+                    $("#generic_return").html(result[0]+' ('+result[1]+' years old)');
+                    console.log(result);
+                }
+            else
+                console.error(error);
+        });
   
 }
 </script>
