@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car TrustQuotient</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+</head>
+<body class="container">
+  <h1>Enter car number</h1>
+  <input type="text" id="car"/>
+  <p id="merk"></p>
+  <a href="#" onclick="detailsCar()" class="btn btn-primary">Get details</a>
+</body>
+<script>
+if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+        abi = JSON.parse('[{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"cars_list","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_car_license_plate","type":"string"},{"name":"_car_make","type":"string"},{"name":"_car_name","type":"string"},{"name":"_car_type","type":"string"},{"name":"_apk_date","type":"string"},{"name":"_car_usage_type","type":"string"},{"name":"_car_first_colour","type":"string"},{"name":"_car_economy_label","type":"string"}],"name":"new_car","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_find_car","type":"string"}],"name":"get_details_of_car","outputs":[{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_all_cars","outputs":[{"name":"","type":"string[]"}],"payable":false,"stateMutability":"view","type":"function"}]');
+        var CarTrustQuotientContract = web3.eth.contract(abi);
+        var CarTrustQuotient = CarTrustQuotientContract.at('0x4ae542b22132a1e91d181765159d7b4c906bf85d');
+        console.log(CarTrustQuotient);
+
+function detailsCar() {
+var xmlhttp = new XMLHttpRequest();
+carName = $("#car").val()
+console.log(carName)
+xmlhttp.open("GET", "https://opendata.rdw.nl/resource/m9d7-ebf2.geojson?kenteken="+carName, true);
+xmlhttp.send();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        console.log(myObj)
+        document.getElementById("merk").innerHTML = myObj.features[0].properties.merk;
+        console.log("Car Make"+myObj.features[0].properties.merk)
+        console.log("Car Name"+myObj.features[0].properties.handelsbenaming)
+        console.log("Car Type"+myObj.features[0].properties.inrichting)
+        console.log("APK Validity"+myObj.features[0].properties.vervaldatum_apk)
+        console.log("Type of usage"+myObj.features[0].properties.voertuigsoort)
+        console.log("Car first colour"+myObj.features[0].properties.eerste_kleur)
+        console.log("Car Economy Label"+myObj.features[0].properties.zuinigheidslabel)
+    }
+};
+  
+}
+</script>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+</html>
