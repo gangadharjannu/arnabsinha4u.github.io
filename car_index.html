@@ -14,14 +14,18 @@
 <script>
 if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
+            console.log("IF SECTION")
         } else {
             // set the provider you want from Web3.providers
             web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+            console.log("ELSE SECTION")
         }
         web3.eth.defaultAccount = web3.eth.accounts[0];
+        console.log(web3.eth.defaultAccount)
         abi = JSON.parse('[{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"cars_list","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_car_license_plate","type":"string"},{"name":"_car_make","type":"string"},{"name":"_car_name","type":"string"},{"name":"_car_type","type":"string"},{"name":"_apk_date","type":"string"},{"name":"_car_usage_type","type":"string"},{"name":"_car_first_colour","type":"string"},{"name":"_car_economy_label","type":"string"}],"name":"new_car","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_find_car","type":"string"}],"name":"get_details_of_car","outputs":[{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_all_cars","outputs":[{"name":"","type":"string[]"}],"payable":false,"stateMutability":"view","type":"function"}]');
         var CarTrustQuotientContract = web3.eth.contract(abi);
         var CarTrustQuotient = CarTrustQuotientContract.at('0x4ae542b22132a1e91d181765159d7b4c906bf85d');
+        console.log("Connection section")
         console.log(CarTrustQuotient);
 
 function detailsCar() {
