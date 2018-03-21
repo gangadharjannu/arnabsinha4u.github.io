@@ -7,13 +7,6 @@
 </head>
 <body class="container">
   <h1>Enter car number</h1>
-  <p id="merk"></p>
-  <p id="test1"></p>
-  <p id="test2"></p>
-  <p id="test3"></p>
-  <p id="test4"></p>
-  <p id="test5"></p>
-  <p id="test6"></p>
   <input type="text" id="car" />
   <a href="#" onclick="detailsCar()" class="btn btn-primary">Get details</a>
 </body>
@@ -45,7 +38,13 @@ xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
         document.getElementById("merk").innerHTML = myObj.features[0].properties.merk;
-        console.log(myObj.features[0].properties.merk)
+        console.log("Car Make"+myObj.features[0].properties.merk)
+        console.log("Car Name"+myObj.features[0].properties.handelsbenaming)
+        console.log("Car Type"+myObj.features[0].properties.inrichting)
+        console.log("APK Validity"+myObj.features[0].properties.vervaldatum_apk)
+        console.log("Type of usage"+myObj.features[0].properties.voertuigsoort)
+        console.log("Car first colour"+myObj.features[0].properties.eerste_kleur)
+        console.log("Car Economy Label"+myObj.features[0].properties.zuinigheidslabel)
     }
 };
   
