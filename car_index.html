@@ -25,18 +25,18 @@ if (typeof web3 !== 'undefined') {
         }
         web3.eth.defaultAccount = web3.eth.accounts[0];
         console.log(web3.eth.defaultAccount)
-        abi = JSON.parse('[{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"cars_list","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_car_license_plate","type":"string"},{"name":"_car_make","type":"string"},{"name":"_car_name","type":"string"},{"name":"_car_type","type":"string"},{"name":"_apk_date","type":"string"},{"name":"_car_usage_type","type":"string"},{"name":"_car_first_colour","type":"string"},{"name":"_car_economy_label","type":"string"}],"name":"new_car","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_find_car","type":"string"}],"name":"get_details_of_car","outputs":[{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"get_all_cars","outputs":[{"name":"","type":"string[]"}],"payable":false,"stateMutability":"view","type":"function"}]');
+        abi = JSON.parse('[{"constant":true,"inputs":[{"name":"_find_car","type":"string"}],"name":"getDetailsOfCar","outputs":[{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_car_license_plate","type":"string"},{"name":"_car_make","type":"string"},{"name":"_car_name","type":"string"},{"name":"_car_type","type":"string"},{"name":"_apk_date","type":"string"},{"name":"_car_usage_type","type":"string"},{"name":"_car_first_colour","type":"string"},{"name":"_car_economy_label","type":"string"}],"name":"setNewCar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"cars_list","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getAllCars","outputs":[{"name":"","type":"string[]"}],"payable":false,"stateMutability":"view","type":"function"}]');
         var CarTrustQuotientContract = web3.eth.contract(abi);
-        var CarTrustQuotient = CarTrustQuotientContract.at('0x4ae542b22132a1e91d181765159d7b4c906bf85d');
+        var CarTrustQuotient = CarTrustQuotientContract.at('0x18bb19a41ce9e53f556ca03f05b860fa879457f3');
         console.log("Connection section")
         console.log(CarTrustQuotient);
 
 function getCarDetails() {
     carLicensePlate = $("#car").val()
-    CarTrustQuotient.get_details_of_car(carLicensePlate, function(error, result){
+    CarTrustQuotient.getDetailsOfCar(carLicensePlate, function(error, result){
             if(!error)
                 {
-                    $("#generic_return").html(result[0]+' ('+result[1]+' years old)');
+                    $("#generic_return").html(result[0]+result[1]+result[2]+result[3]+result[4]+result[5]+result[6]);
                     console.log(result);
                 }
             else
@@ -61,7 +61,7 @@ xmlhttp.onreadystatechange = function() {
         carFirstColour = myObj.features[0].properties.eerste_kleur
         carEconomyLabel = myObj.features[0].properties.zuinigheidslabel
         console.log(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel)
-          CarTrustQuotient.new_car(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel, function (err, res) {
+          CarTrustQuotient.setNewCar(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel, function (err, res) {
             if (err) { alert(err) }
                 alert(res);
             });
