@@ -32,12 +32,14 @@ contractInstance = myContract.at('0x7c7b7508f56183b95ec10b0e4ce6e3c1b47d08bd');
 function detailsCar() {
 var xmlhttp = new XMLHttpRequest();
 carName = $("#car").val()
+console.log(carName)
 xmlhttp.open("GET", "https://opendata.rdw.nl/resource/m9d7-ebf2.geojson?kenteken="+carName, true);
 xmlhttp.send();
 
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
+        console.log(myObj)
         document.getElementById("merk").innerHTML = myObj.features[0].properties.merk;
         console.log("Car Make"+myObj.features[0].properties.merk)
         console.log("Car Name"+myObj.features[0].properties.handelsbenaming)
