@@ -17,18 +17,15 @@
 <script>
 if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
-            console.log("IF SECTION")
         } else {
             // set the provider you want from Web3.providers
             web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-            console.log("ELSE SECTION")
         }
         web3.eth.defaultAccount = web3.eth.accounts[0];
         console.log(web3.eth.defaultAccount)
         abi = JSON.parse('[{"constant":true,"inputs":[{"name":"_find_car","type":"string"}],"name":"getDetailsOfCar","outputs":[{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_car_license_plate","type":"string"},{"name":"_car_make","type":"string"},{"name":"_car_name","type":"string"},{"name":"_car_type","type":"string"},{"name":"_apk_date","type":"string"},{"name":"_car_usage_type","type":"string"},{"name":"_car_first_colour","type":"string"},{"name":"_car_economy_label","type":"string"}],"name":"setNewCar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"cars_list","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getAllCars","outputs":[{"name":"","type":"string[]"}],"payable":false,"stateMutability":"view","type":"function"}]');
         var CarTrustQuotientContract = web3.eth.contract(abi);
         var CarTrustQuotient = CarTrustQuotientContract.at('0x18bb19a41ce9e53f556ca03f05b860fa879457f3');
-        console.log("Connection section")
         console.log(CarTrustQuotient);
 
 function getCarDetails() {
@@ -53,13 +50,13 @@ xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
         console.log(myObj)
-        carMake = myObj.features[0].properties.merk
-        carName = myObj.features[0].properties.handelsbenaming
-        carType = myObj.features[0].properties.inrichting
-        carApkDate = myObj.features[0].properties.vervaldatum_apk
-        carUsageType = myObj.features[0].properties.voertuigsoort
-        carFirstColour = myObj.features[0].properties.eerste_kleur
-        carEconomyLabel = myObj.features[0].properties.zuinigheidslabel
+        carMake = myObj.features[0].properties.merk || "Not available"
+        carName = myObj.features[0].properties.handelsbenaming || "Not available"
+        carType = myObj.features[0].properties.inrichting || "Not available"
+        carApkDate = myObj.features[0].properties.vervaldatum_apk || "Not available"
+        carUsageType = myObj.features[0].properties.voertuigsoort || "Not available"
+        carFirstColour = myObj.features[0].properties.eerste_kleur || "Not available"
+        carEconomyLabel = myObj.features[0].properties.zuinigheidslabel || "Not available"
         console.log(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel)
           CarTrustQuotient.setNewCar(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel, function (err, res) {
             if (err) { alert(err) }
