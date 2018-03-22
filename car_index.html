@@ -7,10 +7,9 @@
    </head>
    <body class="container">
       <h1>Enter car number</h1>
-      <input type="text" id="car"/>
-      <p id="merk"></p>
+      <input type="text" placeholder="Car License Plate" id="car"/>
       <p id="generic_return"></p>
-      <p id="trx_add"></p>
+      <a name="trx_add"></a>
       <a href="#" onclick="getCarDetails()" class="btn btn-primary">Get details</a>
       <a href="#" onclick="setCarDetails()" class="btn btn-primary">Set details</a>
    </body>
@@ -59,7 +58,7 @@
                 CarTrustQuotient.setNewCar(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel, function (err, res) {
                   if (err) { alert(err) }
                       //alert(res);
-                      $("#trx_add").html(base_trx_add+res);
+                      $("a[name='trx_add']").attr('href',base_trx_add+res).text('Transaction link: ');
                   });
           }
       };
