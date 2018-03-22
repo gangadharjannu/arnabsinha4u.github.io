@@ -10,10 +10,12 @@
       <input type="text" id="car"/>
       <p id="merk"></p>
       <p id="generic_return"></p>
+      <p id="trx_add"></p>
       <a href="#" onclick="getCarDetails()" class="btn btn-primary">Get details</a>
       <a href="#" onclick="setCarDetails()" class="btn btn-primary">Set details</a>
    </body>
    <script>
+      var base_trx_add = "https://rinkeby.etherscan.io/tx/";
       if (typeof web3 !== 'undefined') {
                   web3 = new Web3(web3.currentProvider);
               } else {
@@ -24,7 +26,6 @@
               abi = JSON.parse('[{"constant":true,"inputs":[{"name":"_find_car","type":"string"}],"name":"getDetailsOfCar","outputs":[{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_car_license_plate","type":"string"},{"name":"_car_make","type":"string"},{"name":"_car_name","type":"string"},{"name":"_car_type","type":"string"},{"name":"_apk_date","type":"string"},{"name":"_car_usage_type","type":"string"},{"name":"_car_first_colour","type":"string"},{"name":"_car_economy_label","type":"string"}],"name":"setNewCar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"cars_list","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getAllCars","outputs":[{"name":"","type":"string[]"}],"payable":false,"stateMutability":"view","type":"function"}]');
               var CarTrustQuotientContract = web3.eth.contract(abi);
               var CarTrustQuotient = CarTrustQuotientContract.at('0x18bb19a41ce9e53f556ca03f05b860fa879457f3');
-              console.log(CarTrustQuotient);
       function getCarDetails() {
           carLicensePlate = $("#car").val()
           CarTrustQuotient.getDetailsOfCar(carLicensePlate, function(error, result){
@@ -57,7 +58,8 @@
               console.log(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel)
                 CarTrustQuotient.setNewCar(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel, function (err, res) {
                   if (err) { alert(err) }
-                      alert(res);
+                      //alert(res);
+                      $("#trx_add").html(base_trx_add+res);
                   });
           }
       };
