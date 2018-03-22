@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html>
    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+    font-size: 17px;
+}
+
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.container img {vertical-align: middle;}
+
+.container .content {
+    position: absolute;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+    color: #f1f1f1;
+    width: 100%;
+    padding: 10px;
+}
+</style>
       <title>Car TrustQuotient</title>
       <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
       <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
    </head>
-   <body class="container"  background="http://629photography.com/hd-digital-car-image.jpg">
+   <body class="container">
+      <div class="container">
+  <img src="http://629photography.com/hd-digital-car-image.jpg" alt="Notebook" style="width:100%;">
+  <div class="content">
+    <h1><center>Automobile's Trust Quotient</center></h1>
+    <p>Lorem ipsum d.</p>
+  </div>
+</div>
       <h1><center>Automobile's Trust Quotient</center></h1>
       <h1>Enter car number</h1>
       <input type="text" placeholder="Car License Plate" id="car"/>
