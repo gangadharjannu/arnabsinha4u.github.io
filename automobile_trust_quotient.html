@@ -28,6 +28,44 @@ body {
     width: 100%;
     padding: 10px;
 }
+
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+    color: white;
+    display: none;
+    padding: 50px;
+    text-align: center;
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+#AbtPrj {background-color:red;}
+#AbtMe {background-color:green;}
+#Artifacts {background-color:blue;}
+#Others {background-color:orange;}
+   
 </style>
       <title>Car TrustQuotient</title>
       <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -37,7 +75,6 @@ body {
       <div class="container">
   <img src="http://629photography.com/hd-digital-car-image.jpg" alt="Notebook" style="width:100%;">
   <div class="content">
-    <h1><center>Automobile's Trust Quotient</center></h1>
     <p>Project description has to be put it</p>
   </div>
 </div>
@@ -50,8 +87,56 @@ body {
       <a name="trx_add"></a>
       <a href="#" onclick="getCarDetails()" class="btn btn-primary">Get details</a>
       <a href="#" onclick="setCarDetails()" class="btn btn-primary">Set details</a>
+      
+      
+      <p>Click on the buttons inside the tabbed menu:</p>
+
+<div id="AbtPrj" class="tabcontent">
+  <h3>AbtPrj</h3>
+  <p>AbtPrj is thepitais the capitais the capitais the capitais the capitais the capitais the capitais the capital city of England.</p>
+</div>
+
+<div id="AbtMe" class="tabcontent">
+  <h3>AbtMe</h3>
+  <p>AbtMe is the capital of France.</p> 
+</div>
+
+<div id="Artifacts" class="tabcontent">
+  <h3>Artifacts</h3>
+  <p>Artifacts is the capital of Japan.</p>
+</div>
+
+<div id="Others" class="tabcontent">
+  <h3>Others</h3>
+  <p>Others is the capital of Norway.</p>
+</div>
+
+<button class="tablink" onclick="openCity('AbtPrj', this, 'red')" id="defaultOpen">About Project</button>
+<button class="tablink" onclick="openCity('AbtMe', this, 'green')">About Me</button>
+<button class="tablink" onclick="openCity('Artifacts', this, 'blue')">Project Artifacts</button>
+<button class="tablink" onclick="openCity('Others', this, 'orange')">Other details</button>
+      
+      
    </body>
    <script>
+      
+      function openCity(cityName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(cityName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+      
       var base_trx_add = "https://rinkeby.etherscan.io/tx/";
       if (typeof web3 !== 'undefined') {
                   web3 = new Web3(web3.currentProvider);
