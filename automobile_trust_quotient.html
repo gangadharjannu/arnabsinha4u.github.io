@@ -1,194 +1,276 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-    box-sizing: border-box;
-}
 
-body {
-    margin: 0;
-    font-family: Arial;
-    font-size: 17px;
-}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-.container {
-    position: relative;
-    margin: 0 auto;
-}
+        body {
+            margin: 0;
+            font-family: Arial;
+            font-size: 17px;
 
-.container img {vertical-align: middle;}
+            /* 100% fluid width background */
+            background-image: url("http://629photography.com/hd-digital-car-image.jpg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-color: #464646;
+        }
 
-.container .content {
-    position: absolute;
-    top: 0;
-    background: rgba(0, 0, 0, 0.5); /* Black background with transparency */
-    color: #f1f1f1;
-    width: 100%;
-    padding: 10px;
-}
+        header>h1 {
+            padding: 0;
+            margin: 0;
+            line-height: 60px;
+        }
 
-.tablink {
-    background-color: #555;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
-}
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
 
-.tablink:hover {
-    background-color: #777;
-}
+        .container {
+            margin-top: 60px;
+            min-height: 300px;
 
-/* Style the tab content */
-.tabcontent {
-    color: white;
-    display: none;
-    padding: 50px;
-    text-align: center;
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
-}
+            color: #fff;
+            position: relative;
+            margin: 0 auto;
+        }
 
-/* Go from zero to full opacity */
-@keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
+        .left,
+        .right {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            margin: 10px;
+        }
 
-#AbtPrj {background-color:red;}
-#AbtMe {background-color:green;}
-#Artifacts {background-color:blue;}
-#Others {background-color:orange;}
-   
-</style>
-      <title>Car TrustQuotient</title>
-      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-      <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-   </head>
-   <body>
-      <div class="container">
-  <img src="http://629photography.com/hd-digital-car-image.jpg" alt="Notebook" style="width:100%;">
-  <div class="content">
-     <h1><center>Automobile's Trust Quotient</center></h1>
-    <p>Project description has to be put it</p>
-  </div>
-</div>
-      <h1><center>Automobile's Trust Quotient</center></h1>
-      <div class="form-group">
-      <label for="car">Enter car number</label>
-      <input type="text" placeholder="Car License Plate" id="car"/>
-      </div>
-      <p id="generic_return"></p>
-      <a name="trx_add"></a>
-      <a href="#" onclick="getCarDetails()" class="btn btn-primary">Get details</a>
-      <a href="#" onclick="setCarDetails()" class="btn btn-primary">Set details</a>
-      
-      
-      <p>Click on the buttons inside the tabbed menu:</p>
 
-<div id="AbtPrj" class="tabcontent">
-  <h3>AbtPrj</h3>
-  <p>Abt Project</p>
-</div>
+        .bottom {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
 
-<div id="AbtMe" class="tabcontent">
-  <h3>AbtMe</h3>
-  <p>About me</p> 
-</div>
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 25%;
+            animation: fadeEffect 1s;
+            /* Fading effect takes 1 second */
+        }
 
-<div id="Artifacts" class="tabcontent">
-  <h3>Artifacts</h3>
-  <p>Artifacts of the project</p>
-</div>
+        .tablink:hover {
+            background-color: #777;
+        }
 
-<div id="Others" class="tabcontent">
-  <h3>Others</h3>
-  <p>Others information.</p>
-</div>
+        /* Style the tab content */
 
-<button class="tablink" onclick="openCity('AbtPrj', this, 'red')" id="defaultOpen">About Project</button>
-<button class="tablink" onclick="openCity('AbtMe', this, 'green')">About Me</button>
-<button class="tablink" onclick="openCity('Artifacts', this, 'blue')">Project Artifacts</button>
-<button class="tablink" onclick="openCity('Others', this, 'orange')">Other details</button>
-      
-      
-   </body>
-   <script>
-      
-      function openCity(cityName,elmnt,color) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 50px;
+            text-align: center;
+            animation: fadeEffect 1s;
+            /* Fading effect takes 1 second */
+        }
+
+        /* Go from zero to full opacity */
+
+        @keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #AbtPrj {
+            background-color: red;
+        }
+
+        #AbtMe {
+            background-color: green;
+        }
+
+        #Artifacts {
+            background-color: blue;
+        }
+
+        #Others {
+            background-color: orange;
+        }
+    </style>
+    <title>Car TrustQuotient</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <header>
+        <h1 class="text-center">
+            Automobile's Trust Quotient
+        </h1>
+    </header>
+    <div class="container">
+        <div class="content">
+            <p>Project description has to be put it</p>
+        </div>
+        <div class="row">
+            <!-- right pane -->
+            <div class="col-md-4 left">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="car" class="col-xs-4">Enter car number</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" placeholder="Car License Plate" id="car" />
+                        </div>
+                    </div>
+
+                    <div class="col-xs-8 col-xs-offset-4">
+                        <button type="button" onclick="getCarDetails()" class="btn btn-primary">Get details</button>
+                        <button type="button" onclick="setCarDetails()" class="btn btn-primary">Set details</button>
+                    </div>
+
+                </form>
+                <!-- <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="email">Enter car number</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="Car License Plate" id="car" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <button type="button" onclick="getCarDetails()" class="btn btn-primary">Get details</button>
+                            <button type="button" onclick="setCarDetails()" class="btn btn-primary">Set details</button>
+                        </div>
+                    </div>
+                </form> -->
+            </div>
+            <!-- left pane -->
+            <div class="col-md-6 right">
+                <p id="generic_return"></p>
+                <a name="trx_add"></a>
+                TODO: Remove this. Sample content.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bottom">
+        <p>Click on the buttons inside the tabbed menu:</p>
+
+        <div id="AbtPrj" class="tabcontent">
+            <h3>AbtPrj</h3>
+            <p>Abt Project</p>
+        </div>
+
+        <div id="AbtMe" class="tabcontent">
+            <h3>AbtMe</h3>
+            <p>About me</p>
+        </div>
+
+        <div id="Artifacts" class="tabcontent">
+            <h3>Artifacts</h3>
+            <p>Artifacts of the project</p>
+        </div>
+
+        <div id="Others" class="tabcontent">
+            <h3>Others</h3>
+            <p>Others information.</p>
+        </div>
+
+        <button class="tablink" onclick="openCity('AbtPrj', this, 'red')" id="defaultOpen">About Project</button>
+        <button class="tablink" onclick="openCity('AbtMe', this, 'green')">About Me</button>
+        <button class="tablink" onclick="openCity('Artifacts', this, 'blue')">Project Artifacts</button>
+        <button class="tablink" onclick="openCity('Others', this, 'orange')">Other details</button>
+
+    </div>
+
+
+</body>
+<script>
+
+    function openCity(cityName, elmnt, color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(cityName).style.display = "block";
+        elmnt.style.backgroundColor = color;
     }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-    }
-    document.getElementById(cityName).style.display = "block";
-    elmnt.style.backgroundColor = color;
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
 
-}
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-      
-      var base_trx_add = "https://rinkeby.etherscan.io/tx/";
-      if (typeof web3 !== 'undefined') {
-                  web3 = new Web3(web3.currentProvider);
-              } else {
-                  // set the provider you want from Web3.providers
-                  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-              }
-              web3.eth.defaultAccount = web3.eth.accounts[0];
-              abi = JSON.parse('[{"constant":true,"inputs":[{"name":"_find_car","type":"string"}],"name":"getDetailsOfCar","outputs":[{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_car_license_plate","type":"string"},{"name":"_car_make","type":"string"},{"name":"_car_name","type":"string"},{"name":"_car_type","type":"string"},{"name":"_apk_date","type":"string"},{"name":"_car_usage_type","type":"string"},{"name":"_car_first_colour","type":"string"},{"name":"_car_economy_label","type":"string"}],"name":"setNewCar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"cars_list","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getAllCars","outputs":[{"name":"","type":"string[]"}],"payable":false,"stateMutability":"view","type":"function"}]');
-              var CarTrustQuotientContract = web3.eth.contract(abi);
-              var CarTrustQuotient = CarTrustQuotientContract.at('0x18bb19a41ce9e53f556ca03f05b860fa879457f3');
-      function getCarDetails() {
-          carLicensePlate = $("#car").val()
-          CarTrustQuotient.getDetailsOfCar(carLicensePlate, function(error, result){
-                  if(!error)
-                      {
-                          $("#generic_return").html(result[0]+result[1]+result[2]+result[3]+result[4]+result[5]+result[6]);
-                          console.log(result);
-                      }
-                  else
-                      console.error(error);
-              });
-      }
-        
-      function setCarDetails() {
-      var xmlhttp = new XMLHttpRequest();
-      carLicensePlate = $("#car").val()  
-      xmlhttp.open("GET", "https://opendata.rdw.nl/resource/m9d7-ebf2.geojson?kenteken="+carLicensePlate, true);
-      xmlhttp.send();
-      xmlhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-              var myObj = JSON.parse(this.responseText);
-              console.log(myObj)
-              carMake = myObj.features[0].properties.merk || "Not available"
-              carName = myObj.features[0].properties.handelsbenaming || "Not available"
-              carType = myObj.features[0].properties.inrichting || "Not available"
-              carApkDate = myObj.features[0].properties.vervaldatum_apk || "Not available"
-              carUsageType = myObj.features[0].properties.voertuigsoort || "Not available"
-              carFirstColour = myObj.features[0].properties.eerste_kleur || "Not available"
-              carEconomyLabel = myObj.features[0].properties.zuinigheidslabel || "Not available"
-              console.log(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel)
-                CarTrustQuotient.setNewCar(carLicensePlate,carMake,carName,carType,carApkDate,carUsageType,carFirstColour,carEconomyLabel, function (err, res) {
-                  if (err) { alert(err) }
-                      //alert(res);
-                      $("a[name='trx_add']").attr('href',base_trx_add+res).text('Transaction link: ');
-                  });
-          }
-      };
-        
-      }
-   </script>
-   <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
-   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    var base_trx_add = "https://rinkeby.etherscan.io/tx/";
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        // set the provider you want from Web3.providers
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    }
+    web3.eth.defaultAccount = web3.eth.accounts[0];
+    abi = JSON.parse('[{"constant":true,"inputs":[{"name":"_find_car","type":"string"}],"name":"getDetailsOfCar","outputs":[{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_car_license_plate","type":"string"},{"name":"_car_make","type":"string"},{"name":"_car_name","type":"string"},{"name":"_car_type","type":"string"},{"name":"_apk_date","type":"string"},{"name":"_car_usage_type","type":"string"},{"name":"_car_first_colour","type":"string"},{"name":"_car_economy_label","type":"string"}],"name":"setNewCar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"cars_list","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getAllCars","outputs":[{"name":"","type":"string[]"}],"payable":false,"stateMutability":"view","type":"function"}]');
+    var CarTrustQuotientContract = web3.eth.contract(abi);
+    var CarTrustQuotient = CarTrustQuotientContract.at('0x18bb19a41ce9e53f556ca03f05b860fa879457f3');
+    function getCarDetails() {
+        carLicensePlate = $("#car").val()
+        CarTrustQuotient.getDetailsOfCar(carLicensePlate, function (error, result) {
+            if (!error) {
+                $("#generic_return").html(result[0] + result[1] + result[2] + result[3] + result[4] + result[5] + result[6]);
+                console.log(result);
+            }
+            else
+                console.error(error);
+        });
+    }
+
+    function setCarDetails() {
+        var xmlhttp = new XMLHttpRequest();
+        carLicensePlate = $("#car").val()
+        xmlhttp.open("GET", "https://opendata.rdw.nl/resource/m9d7-ebf2.geojson?kenteken=" + carLicensePlate, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var myObj = JSON.parse(this.responseText);
+                console.log(myObj)
+                carMake = myObj.features[0].properties.merk || "Not available"
+                carName = myObj.features[0].properties.handelsbenaming || "Not available"
+                carType = myObj.features[0].properties.inrichting || "Not available"
+                carApkDate = myObj.features[0].properties.vervaldatum_apk || "Not available"
+                carUsageType = myObj.features[0].properties.voertuigsoort || "Not available"
+                carFirstColour = myObj.features[0].properties.eerste_kleur || "Not available"
+                carEconomyLabel = myObj.features[0].properties.zuinigheidslabel || "Not available"
+                console.log(carLicensePlate, carMake, carName, carType, carApkDate, carUsageType, carFirstColour, carEconomyLabel)
+                CarTrustQuotient.setNewCar(carLicensePlate, carMake, carName, carType, carApkDate, carUsageType, carFirstColour, carEconomyLabel, function (err, res) {
+                    if (err) { alert(err) }
+                    //alert(res);
+                    $("a[name='trx_add']").attr('href', base_trx_add + res).text('Transaction link: ');
+                });
+            }
+        };
+
+    }
+</script>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+
 </html>
