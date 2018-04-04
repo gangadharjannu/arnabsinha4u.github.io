@@ -150,7 +150,7 @@
     font-size: large;
 ">Details to be populated here</p>
                 <div id="generic_return"></div>
-                <p>Transaction Link: <a name="trx_add"></a></p>
+                <p id="trx_add"></p>
 
             </div>
         </div>
@@ -271,7 +271,8 @@
                 CarTrustQuotient.setNewCar(carLicensePlate, carMake, carName, carType, carApkDate, carUsageType, carFirstColour, carEconomyLabel, function (err, res) {
                     if (err) { alert(err) }
                     //alert(res);
-                    $("a[name='trx_add']").attr('href', base_trx_add + res).text(base_trx_add + res);
+                    
+                    $("#trx_add").html("Transaction Link: <a href="+(base_trx_add+res)+">"+res+"</a>")
                 });
             }
         };
