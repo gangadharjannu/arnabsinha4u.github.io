@@ -145,7 +145,7 @@
                </div>
             <!-- left pane -->
             <div class="col-md-6 right clearfix">
-                <p id="generic_return"></p>
+                <div id="generic_return"></div>
                 <a name="trx_add"></a>
                 TODO: Remove this. Sample content.
             </div>
@@ -213,10 +213,33 @@
     var CarTrustQuotientContract = web3.eth.contract(abi);
     var CarTrustQuotient = CarTrustQuotientContract.at('0x18bb19a41ce9e53f556ca03f05b860fa879457f3');
     function getCarDetails() {
-        carLicensePlate = $("#car").val()
+      var carMake,
+      carName,
+      carType,
+      carApkDate,
+      carUsageType,
+      carFirstColour,
+      carEconomyLabel,
+        carLicensePlate = $("#car").val();
+
         CarTrustQuotient.getDetailsOfCar(carLicensePlate, function (error, result) {
             if (!error) {
-                $("#generic_return").html(result[0] + result[1] + result[2] + result[3] + result[4] + result[5] + result[6]);
+              carMake = result[0];
+              carName = result[1];
+              carType = result[2];
+              carApkDate = result[3];
+              carUsageType = result[4];
+              carFirstColour = result[5];
+              carEconomyLabel = result[6];
+               finalContent="<p>"+carMake+"</p>"+
+               "<p>"+carName+"</p>"+
+               "<p>"+carType+"</p>"+
+               "<p>"+carApkDate+"</p>"+
+               "<p>"+carUsageType+"</p>"+
+               "<p>"+carFirstColour+"</p>"+
+               "<p>"+carEconomyLabel+"</p>";
+
+                $("#generic_return").html(finalContent);
                 console.log(result);
             }
             else
